@@ -3,17 +3,17 @@ title: 'Session 9: Repeated Measures and Longitudinal Data Analysis I'
 author: "Levi Waldron"
 clean: false
 output:
+  html_document:
+    df_print: paged
+    number_sections: yes
+    theme: lumen
+    toc: yes
   beamer_presentation:
     colortheme: dove
     df_print: paged
     fonttheme: structurebold
     slide_level: 2
     theme: Hannover
-  html_document:
-    df_print: paged
-    number_sections: yes
-    theme: lumen
-    toc: yes
   slidy_presentation: default
   md_document:
     preserve_yaml: false
@@ -110,10 +110,12 @@ fit1way <- lm(fecfat ~ pilltype, data=fecfat)
 
 ```{r, results='asis', echo=FALSE, message=FALSE}
 library(xtable)
-print(xtable(anova(fit1way), caption="One-way analysis of variance table for fecal fat dataset"), comment=FALSE)
-##library(stargazer)
-##stargazer(anova(fit1way), title="One-way analysis of variance results", style="all2", header=FALSE)
+otype <- ifelse(knitr::is_html_output(), "html", "latex")
+xt <-
+  xtable(anova(fit1way), caption = "One-way analysis of variance table for fecal fat dataset")
+print(xt, comment=FALSE, type = otype)
 ```
+
 
 * Does not account for similarity of measurements within individual
 * Would be correct if each treatment were given to a different individual
@@ -146,14 +148,14 @@ interaction.plot(x.factor=fecfat$pilltype,
 fit1way <- lm(fecfat ~ pilltype, data=fecfat)
 ```
 ```{r, results='asis', echo=FALSE, message=FALSE}
-print(xtable::xtable(anova(fit1way), caption="One-way analysis of variance table for fecal fat dataset"), comment=FALSE)
+print(xtable::xtable(anova(fit1way), caption="One-way analysis of variance table for fecal fat dataset"), comment=FALSE, type = otype)
 ```
 
 ```{r}
 fit2way <- lm(fecfat ~ subject + pilltype, data=fecfat)
 ```
 ```{r, results='asis', echo=FALSE, message=FALSE}
-print(xtable(anova(fit2way), label="2", caption="Two-way analysis of variance table. Note the similarity of the pilltype row."), comment=FALSE)
+print(xtable(anova(fit2way), label="2", caption="Two-way analysis of variance table. Note the similarity of the pilltype row."), comment=FALSE, type = otype)
 ```
 
 ## What happened??
