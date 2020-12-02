@@ -1,19 +1,19 @@
 ---
-title: 'Session 9: Repeated Measures and Longitudinal Data Analysis I'
+title: 'Session 9: Repeated Measures and Longitudinal Analysis I'
 author: "Levi Waldron"
 clean: false
 output:
-  html_document:
-    df_print: paged
-    number_sections: yes
-    theme: lumen
-    toc: yes
   beamer_presentation:
     colortheme: dove
     df_print: paged
     fonttheme: structurebold
     slide_level: 2
     theme: Hannover
+  html_document:
+    df_print: paged
+    number_sections: yes
+    theme: lumen
+    toc: yes
   slidy_presentation: default
   md_document:
     preserve_yaml: false
@@ -29,7 +29,8 @@ Learning objectives:
 
 1. Identify and define hierarchical and longitudinal data
 2. Analyze correlated data using Analysis of Variance
-3. Identify and define random and fixed effects
+3. Define and calculate Intraclass Correlation
+4. Identify and define random and fixed effects
 
 Textbook sections:
 

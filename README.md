@@ -10,7 +10,8 @@
 
 1. Identify and define hierarchical and longitudinal data
 2. Analyze correlated data using Analysis of Variance
-3. Identify and define random and fixed effects
+3. Define and calculate Intraclass Correlation
+4. Identify and define random and fixed effects
 
 Textbook sections:
 
