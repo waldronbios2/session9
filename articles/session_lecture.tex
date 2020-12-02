@@ -316,7 +316,7 @@ collected from or specific to different levels within a study.
 \begin{frame}{Option 1: non-hierarchical analysis (wrong)}
 \protect\hypertarget{option-1-non-hierarchical-analysis-wrong}{}
 
-\includegraphics{../docs/articles/session_lecture_files/figure-beamer/simpleboxplot-1.pdf}
+\includegraphics{../docs/articles/session_lecture_files/figure-beamer/boxplot-1.pdf}
 
 \end{frame}
 
@@ -327,7 +327,7 @@ collected from or specific to different levels within a study.
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{fit1way <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(fecfat }\OperatorTok{~}\StringTok{ }\NormalTok{pilltype, }\DataTypeTok{data=}\NormalTok{fecfat)}
+\NormalTok{fit1way <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(fecfat }\OperatorTok{~}\StringTok{ }\NormalTok{pilltype, }\DataTypeTok{data=}\NormalTok{dat)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -355,30 +355,31 @@ pilltype & 3 & 2008.60 & 669.53 & 1.86 & 0.1687 \\
 
 \end{frame}
 
-\begin{frame}{Option 2: two-way analysis of variance (getting closer)}
-\protect\hypertarget{option-2-two-way-analysis-of-variance-getting-closer}{}
+\begin{frame}{Option 2: 2-way AOV}
+\protect\hypertarget{option-2-2-way-aov}{}
 
 \begin{itemize}
 \tightlist
 \item
   Accounts for individual differences in mean fecal fat
 \item
-  Fits a coefficient for mean fecal fat per indivudual
+  Fits a coefficient for mean fecal fat per individual
+\item
+  Getting closer
 \end{itemize}
 
-\includegraphics{../docs/articles/session_lecture_files/figure-beamer/unnamed-chunk-3-1.pdf}
+\includegraphics{../docs/articles/session_lecture_files/figure-beamer/ggspaghetti-1.pdf}
 
 \end{frame}
 
-\begin{frame}[fragile]{Option 2: 2-way analysis of variance (getting
-closer)}
-\protect\hypertarget{option-2-2-way-analysis-of-variance-getting-closer}{}
+\begin{frame}[fragile]{Option 2: 2-way AOV}
+\protect\hypertarget{option-2-2-way-aov-1}{}
 
 \footnotesize
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{fit1way <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(fecfat }\OperatorTok{~}\StringTok{ }\NormalTok{pilltype, }\DataTypeTok{data=}\NormalTok{fecfat)}
+\NormalTok{fit1way <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(fecfat }\OperatorTok{~}\StringTok{ }\NormalTok{pilltype, }\DataTypeTok{data=}\NormalTok{dat)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -397,7 +398,7 @@ pilltype & 3 & 2008.60 & 669.53 & 1.86 & 0.1687 \\
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{fit2way <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(fecfat }\OperatorTok{~}\StringTok{ }\NormalTok{subject }\OperatorTok{+}\StringTok{ }\NormalTok{pilltype, }\DataTypeTok{data=}\NormalTok{fecfat)}
+\NormalTok{fit2way <-}\StringTok{ }\KeywordTok{lm}\NormalTok{(fecfat }\OperatorTok{~}\StringTok{ }\NormalTok{subject }\OperatorTok{+}\StringTok{ }\NormalTok{pilltype, }\DataTypeTok{data=}\NormalTok{dat)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -754,7 +755,7 @@ This calculation will become easier when we learn to estimate
 \begin{itemize}
 \tightlist
 \item
-  Estimates of coeffients (or ``effect sizes'') are unchanged by
+  Estimates of coefficients (or ``effect sizes'') are unchanged by
   hierarchical modeling
 \item
   Ignoring within-subject correlations results in incorrect estimates of

@@ -196,14 +196,14 @@
 <div id="option-1-non-hierarchical-analysis-wrong" class="section level2">
 <h2 class="hasAnchor">
 <a href="#option-1-non-hierarchical-analysis-wrong" class="anchor"></a>Option 1: non-hierarchical analysis (wrong)</h2>
-<p><img src="session_lecture_files/figure-html/simpleboxplot-1.png" width="700"></p>
+<p><img src="session_lecture_files/figure-html/boxplot-1.png" width="700"></p>
 </div>
 <div id="option-1-non-hierarchical-analysis-wrong-1" class="section level2">
 <h2 class="hasAnchor">
 <a href="#option-1-non-hierarchical-analysis-wrong-1" class="anchor"></a>Option 1: non-hierarchical analysis (wrong)</h2>
 
 <div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="va">fit1way</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">fecfat</span> <span class="op">~</span> <span class="va">pilltype</span>, data<span class="op">=</span><span class="va">fecfat</span><span class="op">)</span></pre></div>
+<span class="va">fit1way</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">fecfat</span> <span class="op">~</span> <span class="va">pilltype</span>, data<span class="op">=</span><span class="va">dat</span><span class="op">)</span></pre></div>
 <table class="table">
 <caption align="bottom">
 One-way analysis of variance table for fecal fat dataset
@@ -271,21 +271,22 @@ Residuals
 <li>Would be correct if each treatment were given to a different individual</li>
 </ul>
 </div>
-<div id="option-2-two-way-analysis-of-variance-getting-closer" class="section level2">
+<div id="option-2-2-way-aov" class="section level2">
 <h2 class="hasAnchor">
-<a href="#option-2-two-way-analysis-of-variance-getting-closer" class="anchor"></a>Option 2: two-way analysis of variance (getting closer)</h2>
+<a href="#option-2-2-way-aov" class="anchor"></a>Option 2: 2-way AOV</h2>
 <ul>
 <li>Accounts for individual differences in mean fecal fat</li>
-<li>Fits a coefficient for mean fecal fat per indivudual</li>
+<li>Fits a coefficient for mean fecal fat per individual</li>
+<li>Getting closer</li>
 </ul>
-<p><img src="session_lecture_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
+<p><img src="session_lecture_files/figure-html/ggspaghetti-1.png" width="700"></p>
 </div>
-<div id="option-2-2-way-analysis-of-variance-getting-closer" class="section level2">
+<div id="option-2-2-way-aov-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#option-2-2-way-analysis-of-variance-getting-closer" class="anchor"></a>Option 2: 2-way analysis of variance (getting closer)</h2>
+<a href="#option-2-2-way-aov-1" class="anchor"></a>Option 2: 2-way AOV</h2>
 
 <div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="va">fit1way</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">fecfat</span> <span class="op">~</span> <span class="va">pilltype</span>, data<span class="op">=</span><span class="va">fecfat</span><span class="op">)</span></pre></div>
+<span class="va">fit1way</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">fecfat</span> <span class="op">~</span> <span class="va">pilltype</span>, data<span class="op">=</span><span class="va">dat</span><span class="op">)</span></pre></div>
 <table class="table">
 <caption align="bottom">
 One-way analysis of variance table for fecal fat dataset
@@ -349,7 +350,7 @@ Residuals
 </tr>
 </table>
 <div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="va">fit2way</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">fecfat</span> <span class="op">~</span> <span class="va">subject</span> <span class="op">+</span> <span class="va">pilltype</span>, data<span class="op">=</span><span class="va">fecfat</span><span class="op">)</span></pre></div>
+<span class="va">fit2way</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">fecfat</span> <span class="op">~</span> <span class="va">subject</span> <span class="op">+</span> <span class="va">pilltype</span>, data<span class="op">=</span><span class="va">dat</span><span class="op">)</span></pre></div>
 <table class="table">
 <caption align="bottom">
 Two-way analysis of variance table. Note the similarity of the pilltype row.
@@ -650,7 +651,7 @@ FECFAT_{ij} = \mu + SUBJECT_i + \beta_{pilltype j} PILLTYPE_j + \epsilon_{ij}
 <h2 class="hasAnchor">
 <a href="#summary-hierarchical-data" class="anchor"></a>Summary: hierarchical data</h2>
 <ul>
-<li>Estimates of coeffients (or “effect sizes”) are unchanged by hierarchical modeling</li>
+<li>Estimates of coefficients (or “effect sizes”) are unchanged by hierarchical modeling</li>
 <li>Ignoring within-subject correlations results in incorrect estimates of variance, F statistics, p-values
 <ul>
 <li>not always “conservative”</li>
