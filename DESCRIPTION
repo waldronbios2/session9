@@ -13,6 +13,7 @@ Imports:
     tidyverse
 Suggests:
     xtable,
+    gridExtra,
     stargazer,
     pkgdown,
     knitr,

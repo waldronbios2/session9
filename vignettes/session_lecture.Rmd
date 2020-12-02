@@ -14,6 +14,8 @@ output:
     number_sections: yes
     theme: lumen
     toc: yes
+  pdf_document:
+    toc: yes
   slidy_presentation: default
   md_document:
     preserve_yaml: false
@@ -83,33 +85,33 @@ _Definition_: Hierarchical data are data (responses or predictors) collected fro
 ![Fecal Fat dataset](VittinghoffTable71.png)
 
 ## Option 1: non-hierarchical analysis (wrong)
-```{r readdata, echo=FALSE}
-fecfat <- read.csv("fecfat.csv")
-fecfat$pilltype <- factor(fecfat$pilltype, levels=c("none", "tablet", "capsule", "coated"))
-fecfat$subject <- factor(fecfat$subject)
+```{r readdata, echo=FALSE, message=FALSE}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(ggplot2)
+  library(gridExtra)
+})
+dat <- read.csv("fecfat.csv") %>%
+  mutate(pilltype = factor(pilltype, levels = c("none", "tablet", "capsule", "coated"))) %>%
+  mutate(subject = factor(subject))
 ```
 
-```{r simpleboxplot, echo=FALSE, warning=FALSE}
-par(cex=1.5)
-library(RColorBrewer)
-# colors from display.brewer.all(n=3)
-mycols <- c("white", brewer.pal(n=3, "Pastel2"))
-boxplot(fecfat ~ pilltype, data=fecfat,
-        notch=TRUE,
-        col=mycols, 
-        xlab="Treatment", ylab="Fecal Fat (mg/day)")
-stripchart(fecfat ~ pilltype, data=fecfat, vertical=TRUE, pch=20,
-           method="jitter", jitter=0.1, add=TRUE)
+```{r boxplot, echo=FALSE}
+ggplot(dat, aes(pilltype, fecfat)) +
+  geom_boxplot() + 
+  geom_jitter(width=0.2, aes(size=1.5)) +
+  theme_grey(base_size = 22) + 
+  theme(legend.position = "none")
 ```
 
 ## Option 1: non-hierarchical analysis (wrong)
 
 \footnotesize
-```{r}
-fit1way <- lm(fecfat ~ pilltype, data=fecfat)
+```{r dofit1way}
+fit1way <- lm(fecfat ~ pilltype, data=dat)
 ```
 
-```{r, results='asis', echo=FALSE, message=FALSE}
+```{r showfit1way, results='asis', echo=FALSE, message=FALSE}
 library(xtable)
 otype <- ifelse(knitr::is_html_output(), "html", "latex")
 xt <-
@@ -121,42 +123,56 @@ print(xt, comment=FALSE, type = otype)
 * Does not account for similarity of measurements within individual
 * Would be correct if each treatment were given to a different individual
 
-## Option 2: two-way analysis of variance (getting closer)
-
-* Accounts for individual differences in mean fecal fat
-* Fits a coefficient for mean fecal fat per indivudual
-
-```{r, echo=FALSE, fig.height=6}
-fecfat$fecfatminusmean <- residuals(lm(fecfat ~ subject, data=fecfat))
-par(mfrow=c(1,2), cex=1.35)
-interaction.plot(x.factor=fecfat$pilltype, 
-                 trace.factor=fecfat$subject, 
-                 response=fecfat$fecfat, 
-                 xlab="Treatment", ylab="Fecal Fat (mg/day)",
-                 main="No subject effect correction", legend=FALSE)
-interaction.plot(x.factor=fecfat$pilltype, 
-                 trace.factor=fecfat$subject, 
-                 response=fecfat$fecfatminusmean, 
-                 xlab="Treatment", ylab="Fecal Fat (mg/day)",
-                 main="Subject mean subtracted", legend=FALSE)
+```{r minusmean, echo=FALSE}
+dat <- mutate(dat, fecfatminusmean = residuals(lm(fecfat ~ subject, data = dat)))
 ```
 
-## Option 2: 2-way analysis of variance (getting closer)
+## Option 2: 2-way AOV
+
+* Accounts for individual differences in mean fecal fat
+* Fits a coefficient for mean fecal fat per individual
+* Getting closer
+
+```{r ggspaghetti, echo=FALSE}
+p1 <- ggplot(dat, aes(x = pilltype, y = fecfat, group = subject, lty = subject)) +
+  geom_line(size = 1) +
+  theme_grey(base_size = 22) + 
+  theme(legend.position = "none") +
+  labs(subtitle = "Raw data") +
+  xlab("Treatment") + ylab("Fecal Fat (mg/day)")
+p2 <- ggplot(dat, aes(x = pilltype, y = fecfatminusmean, group = subject, lty = subject)) +
+  geom_line(size = 1) +
+  theme_grey(base_size = 22) + 
+  theme(legend.position = "none") +
+  labs(subtitle = "Subject means subtracted") +
+  xlab("Treatment") + ylab("Fecal Fat (mg/day)")
+grid.arrange(p1, p2, ncol=2, respect = TRUE)
+```
+
+## Option 2: 2-way AOV
 
 \footnotesize
 
-```{r}
-fit1way <- lm(fecfat ~ pilltype, data=fecfat)
+```{r fit1wayagain}
+fit1way <- lm(fecfat ~ pilltype, data=dat)
 ```
-```{r, results='asis', echo=FALSE, message=FALSE}
-print(xtable::xtable(anova(fit1way), caption="One-way analysis of variance table for fecal fat dataset"), comment=FALSE, type = otype)
+```{r xtable2, results='asis', echo=FALSE, message=FALSE}
+print(
+  xtable::xtable(anova(fit1way), caption = "One-way analysis of variance table for fecal fat dataset"),
+  comment = FALSE,
+  type = otype
+)
 ```
 
-```{r}
-fit2way <- lm(fecfat ~ subject + pilltype, data=fecfat)
+```{r fit2way}
+fit2way <- lm(fecfat ~ subject + pilltype, data=dat)
 ```
-```{r, results='asis', echo=FALSE, message=FALSE}
-print(xtable(anova(fit2way), label="2", caption="Two-way analysis of variance table. Note the similarity of the pilltype row."), comment=FALSE, type = otype)
+```{r xtablefit2way, results='asis', echo=FALSE, message=FALSE}
+print(
+  xtable(anova(fit2way), label = "2", caption = "Two-way analysis of variance table. Note the similarity of the pilltype row."),
+  comment = FALSE,
+  type = otype
+)
 ```
 
 ## What happened??
@@ -259,30 +275,26 @@ ICC & = \frac{\tau_{00}^2}{\tau_{00}^2 + \sigma_\epsilon^2}
 ![Fecal Fat dataset](VittinghoffTable71.png)
 
 \footnotesize
-```{r, echo=FALSE, message=FALSE, results='hide'}
+```{r makewide, echo=FALSE, message=FALSE, results='hide'}
 library(tidyr)
-library(dplyr)
-fecfat.wide <- fecfat %>% 
-  select(-fecfatminusmean) %>%  #get rid of fecfatminusmean column
-  spread(key=pilltype, value=fecfat) %>%
+dat.wide <- dat %>% 
+  select(-fecfatminusmean) %>%
+  pivot_wider(names_from = pilltype, values_from = fecfat) %>%
   mutate(MEAN = (none+tablet+capsule+coated)/4)
-#print(xtable::xtable(fecfat.wide, digits=1, 
-#                     caption="Wide version of fecal fat dataset"), 
-#      comment=FALSE)
 ```
 
-Variance of the subject averages (`r round(var(fecfat.wide$MEAN), 1)`) is increased by correlation of measurements within individual.
+Variance of the subject averages (`r round(var(dat.wide$MEAN), 1)`) is increased by correlation of measurements within individual.
 
 ## Calculation of correlations within subjects (ICC)
 
 What is your estimate of the variability due to subjects, from the 2-way ANOVA?
 \footnotesize
-```{r}
+```{r sumresid}
 sum(residuals(fit2way)^2) / 15 / 4 #df=15, divided by 4 pilltypes
 279.419 - 26.75 #var(SUBJECT_i)
 ```
 Residual variance is:
-```{r}
+```{r sumresid2}
 sum(residuals(fit2way)^2) / 15 #df=15
 ```
 
@@ -334,7 +346,7 @@ where $SUBJECT_i \stackrel{iid}{\sim} N(0, \sigma_{subj}^2)$
 
 ## Summary: hierarchical data
 
-* Estimates of coeffients (or "effect sizes") are unchanged by hierarchical modeling
+* Estimates of coefficients (or "effect sizes") are unchanged by hierarchical modeling
 * Ignoring within-subject correlations results in incorrect estimates of variance, F statistics, p-values
      - not always "conservative"
 * Intraclass Correlation (ICC) provides a measure of correlation induced by grouping
