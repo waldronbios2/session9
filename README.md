@@ -28,4 +28,22 @@ Textbook sections:
 
 **Learning Objectives**
 
+1. Create and interpret a notched barplot
+2. Create spaghetti / line plots for grouped data
+3. Use `pivot_wider` to create a wide-format dataframe
+4. Do a manual ICC calculation
+5. Write a function
+6. Perform a permutation simulation
+
 **Exercises**
+
+1. Read the fecal fat dataset and convert pilltype and subject to factors
+2. Create a notched boxplot of the data.
+3. Interpret the notches. What is wrong with the usual interpretation in this example?
+4. Subtract subject means from the fecal fat data, manually and using residuals of a one-way AOV
+5. Make line plots for each subject, with and without subject mean centering
+6. Convert to a wide-format dataset and remove the subject column
+7. Write a function to calculate subject and residual variance and ICC of this dataset as a vector
+8. Create a simulated dataset where subjects are randomized for each treatment
+9. compare ICC for your original and simulated dataset
+10. Repeat the simulation 999 times, and compare to your original dataset

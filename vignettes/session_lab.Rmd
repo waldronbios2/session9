@@ -4,9 +4,8 @@ author: "Levi Waldron"
 institute: "CUNY SPH Biostatistics 2"
 clean: false
 output:
-  html_document:
+  html_document: 
     toc: yes
-    df_print: paged
     theme: lumen
     number_sections: yes
   md_document:
@@ -26,7 +25,7 @@ always_allow_html: true
 **Exercises**
 
 # Read the fecal fat dataset and convert pilltype and subject to factors
-```{r}
+```{r, message=FALSE}
 library(readr)
 library(dplyr)
 dat <- read_csv("fecfat.csv") %>%
