@@ -211,6 +211,8 @@ FECFAT_{ij} = \mu + SUBJECT_i + PILLTYPE_j + \epsilon_{ij}
 
 Assumption: $\epsilon_{ij} \stackrel{iid}{\sim} N(0, \sigma_\epsilon^2)$
 
+# Correlations within subjects (ICC)
+
 ## Correlations within subjects
 
 * One-way ANOVA fails because it does not account for the correlation of measurements within-person
@@ -243,7 +245,7 @@ Recall $SUBJECT_i$ is the term for individual in 2-way AOV. Now $\beta_i * subje
 
 ## Correlation within subjects
 
-Previous slide calculated *covariance*. Also need *variance*.
+Previous slide calculated *covariance* for numerator of correlation. Now calculate *variance* for the denominator (${sd(FECFAT_{ij}) * sd(FECFAT_{ik})} = var(FECFAT_{ij})$)
 
 \begin{equation*}
 \begin{aligned}
@@ -254,8 +256,6 @@ var(FECFAT_{ij}) &= var(SUBJECT_i, SUBJECT_i) + var(\epsilon_{ij}) \\
 
 * Difference is that the independent residuals do contribute to $var(FECFAT_{ij})$
 * Variance is broken into componenets due to *subject* and *residual* variance
-
-# Correlations within subjects (ICC)
 
 ## Intraclass Correlation
 
