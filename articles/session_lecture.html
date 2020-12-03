@@ -486,6 +486,10 @@ FECFAT_{ij} = \mu + SUBJECT_i + PILLTYPE_j + \epsilon_{ij}
 </ul>
 <p>Assumption: <span class="math inline">\(\epsilon_{ij} \stackrel{iid}{\sim} N(0, \sigma_\epsilon^2)\)</span></p>
 </div>
+</div>
+<div id="correlations-within-subjects-icc" class="section level1">
+<h1 class="hasAnchor">
+<a href="#correlations-within-subjects-icc" class="anchor"></a>Correlations within subjects (ICC)</h1>
 <div id="correlations-within-subjects" class="section level2">
 <h2 class="hasAnchor">
 <a href="#correlations-within-subjects" class="anchor"></a>Correlations within subjects</h2>
@@ -528,7 +532,7 @@ cov(FECFAT_{ij}, FECFAT_{ik}) &amp;= cov(SUBJECT_i, SUBJECT_i) \\
 <div id="correlation-within-subjects-1" class="section level2">
 <h2 class="hasAnchor">
 <a href="#correlation-within-subjects-1" class="anchor"></a>Correlation within subjects</h2>
-<p>Previous slide calculated <em>covariance</em>. Also need <em>variance</em>.</p>
+<p>Previous slide calculated <em>covariance</em> for numerator of correlation. Now calculate <em>variance</em> for the denominator (<span class="math inline">\({sd(FECFAT_{ij}) * sd(FECFAT_{ik})} = var(FECFAT_{ij})\)</span>)</p>
 <p><span class="math display">\[\begin{equation*}
 \begin{aligned}
 var(FECFAT_{ij}) &amp;= var(SUBJECT_i, SUBJECT_i) + var(\epsilon_{ij}) \\
@@ -541,10 +545,6 @@ var(FECFAT_{ij}) &amp;= var(SUBJECT_i, SUBJECT_i) + var(\epsilon_{ij}) \\
 <li>Variance is broken into componenets due to <em>subject</em> and <em>residual</em> variance</li>
 </ul>
 </div>
-</div>
-<div id="correlations-within-subjects-icc" class="section level1">
-<h1 class="hasAnchor">
-<a href="#correlations-within-subjects-icc" class="anchor"></a>Correlations within subjects (ICC)</h1>
 <div id="intraclass-correlation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#intraclass-correlation" class="anchor"></a>Intraclass Correlation</h2>
