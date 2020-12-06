@@ -37,9 +37,9 @@ dat <- read_csv("fecfat.csv") %>%
 
 ```{r}
 library(ggplot2)
-ggplot(dat, aes(x=pilltype, y=fecfat)) + 
-  geom_boxplot(notch=TRUE) +
-  geom_jitter(width = 0.2) +
+ggplot(dat, aes(x = pilltype, y = fecfat)) +
+  geom_boxplot(notch = TRUE, outlier.shape = NA) +
+  geom_jitter(width = 0.2, alpha = 0.5) +
   theme_grey(base_size = 12) +
   theme(legend.position = "none")
 ```

@@ -98,8 +98,8 @@ dat <- read.csv("fecfat.csv") %>%
 
 ```{r boxplot, echo=FALSE}
 ggplot(dat, aes(pilltype, fecfat)) +
-  geom_boxplot() + 
-  geom_jitter(width=0.2, aes(size=1.5)) +
+  geom_boxplot(outlier.shape = NA) + 
+  geom_jitter(width=0.2, aes(size=1.5), alpha=0.9) +
   theme_grey(base_size = 22) + 
   theme(legend.position = "none")
 ```
