@@ -25,6 +25,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -37,14 +39,14 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">session9</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Lecture and Lab
      
     <span class="caret"></span>
@@ -57,23 +59,23 @@
       <a href="../articles/session_lecture.pdf">Lecture notes PDF</a>
     </li>
     <li class="divider">
-    <li>
+    </li>
+<li>
       <a href="../articles/session_lab.html">Lab materials</a>
     </li>
   </ul>
 </li>
-<li class="dropdown-header">
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/waldronbios2/session9/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/waldronbios2/session9/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="https://twitter.com/leviwaldron1">
-    <span class="fab fa fab fa-twitter fa-lg"></span>
+  <a href="https://twitter.com/leviwaldron1" class="external-link">
+    <span class="fab fa-twitter fa-lg"></span>
      
   </a>
 </li>
@@ -87,26 +89,28 @@
 
       
 
-      </header><script src="session_lecture_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Session 9: Repeated Measures and Longitudinal Analysis I</h1>
-                        <h4 class="author">Levi Waldron</h4>
+      <h1 data-toc-skip>Session 9: Repeated Measures and Longitudinal
+Analysis I</h1>
+                        <h4 data-toc-skip class="author">Levi
+Waldron</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/waldronbios2/session9/blob/master/vignettes/session_lecture.Rmd"><code>vignettes/session_lecture.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/waldronbios2/session9/blob/HEAD/vignettes/session_lecture.Rmd" class="external-link"><code>vignettes/session_lecture.Rmd</code></a></small>
       <div class="hidden name"><code>session_lecture.Rmd</code></div>
 
     </div>
 
     
     
-<div id="learning-objectives-and-outline" class="section level1">
-<h1 class="hasAnchor">
-<a href="#learning-objectives-and-outline" class="anchor"></a>Learning objectives and outline</h1>
-<div id="learning-objectives" class="section level2">
-<h2 class="hasAnchor">
-<a href="#learning-objectives" class="anchor"></a>Learning objectives</h2>
+<div class="section level2">
+<h2 id="learning-objectives-and-outline">Learning objectives and outline<a class="anchor" aria-label="anchor" href="#learning-objectives-and-outline"></a>
+</h2>
+<div class="section level3">
+<h3 id="learning-objectives">Learning objectives<a class="anchor" aria-label="anchor" href="#learning-objectives"></a>
+</h3>
 <p>Learning objectives:</p>
 <ol style="list-style-type: decimal">
 <li>Identify and define hierarchical and longitudinal data</li>
@@ -119,9 +123,9 @@
 <li>Vittinghoff sections 7.1 (7.2-7.3 next class)</li>
 </ul>
 </div>
-<div id="outline" class="section level2">
-<h2 class="hasAnchor">
-<a href="#outline" class="anchor"></a>Outline</h2>
+<div class="section level3">
+<h3 id="outline">Outline<a class="anchor" aria-label="anchor" href="#outline"></a>
+</h3>
 <ol style="list-style-type: decimal">
 <li>Introduction to hierarchical and longitudinal data</li>
 <li>Fecal Fat example</li>
@@ -130,81 +134,96 @@
 </ol>
 </div>
 </div>
-<div id="intro-hierarchical-and-longitudinal-data" class="section level1">
-<h1 class="hasAnchor">
-<a href="#intro-hierarchical-and-longitudinal-data" class="anchor"></a>Intro: hierarchical and longitudinal data</h1>
-<div id="what-are-hierarchical-and-longitudinal-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#what-are-hierarchical-and-longitudinal-data" class="anchor"></a>What are hierarchical and longitudinal data?</h2>
+<div class="section level2">
+<h2 id="intro-hierarchical-and-longitudinal-data">Intro: hierarchical and longitudinal data<a class="anchor" aria-label="anchor" href="#intro-hierarchical-and-longitudinal-data"></a>
+</h2>
+<div class="section level3">
+<h3 id="what-are-hierarchical-and-longitudinal-data">What are hierarchical and longitudinal data?<a class="anchor" aria-label="anchor" href="#what-are-hierarchical-and-longitudinal-data"></a>
+</h3>
 <ul>
-<li>Knee radiographs are taken yearly in order to understand the onset of osteoarthritis</li>
-<li>An indicator of heart damage is measured at 1, 3, and 6 days following a brain hemorrhage.</li>
-<li>Groups of patients in a urinary incontinence trial are assembled from different treatment centers</li>
+<li>Knee radiographs are taken yearly in order to understand the onset
+of osteoarthritis</li>
+<li>An indicator of heart damage is measured at 1, 3, and 6 days
+following a brain hemorrhage.</li>
+<li>Groups of patients in a urinary incontinence trial are assembled
+from different treatment centers</li>
 <li>Susceptibility to tuberculosis is measured in family members</li>
-<li>A study of the choice of type of surgery to treat a brain aneurysm either by clipping the base of the aneurysm or implanting a small coil. The study is conducted by measuring the type of surgery a patient receives from a number of surgeons at a number of different institutions.</li>
+<li>A study of the choice of type of surgery to treat a brain aneurysm
+either by clipping the base of the aneurysm or implanting a small coil.
+The study is conducted by measuring the type of surgery a patient
+receives from a number of surgeons at a number of different
+institutions.</li>
 </ul>
 </div>
-<div id="what-is-the-distinction-between-hierarchical-and-longitudinal-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#what-is-the-distinction-between-hierarchical-and-longitudinal-data" class="anchor"></a>What is the distinction between hierarchical and longitudinal data?</h2>
+<div class="section level3">
+<h3 id="what-is-the-distinction-between-hierarchical-and-longitudinal-data">What is the distinction between hierarchical and longitudinal
+data?<a class="anchor" aria-label="anchor" href="#what-is-the-distinction-between-hierarchical-and-longitudinal-data"></a>
+</h3>
 <ul>
 <li>Longitudinal data are repeated measures over time</li>
 <li>Longitudinal data are a type of hierarchical data
 <ul>
-<li>repeated measures are correlated, and nested within the observational unit (individual)</li>
+<li>repeated measures are correlated, and nested within the
+observational unit (individual)</li>
 </ul>
 </li>
 <li>Other non-longitudinal data can also be hierarchical</li>
 </ul>
-<p><em>Definition</em>: Hierarchical data are data (responses or predictors) collected from or specific to different levels within a study.</p>
+<p><em>Definition</em>: Hierarchical data are data (responses or
+predictors) collected from or specific to different levels within a
+study.</p>
 </div>
-<div id="important-features-of-this-type-of-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#important-features-of-this-type-of-data" class="anchor"></a>Important features of this type of data</h2>
+<div class="section level3">
+<h3 id="important-features-of-this-type-of-data">Important features of this type of data<a class="anchor" aria-label="anchor" href="#important-features-of-this-type-of-data"></a>
+</h3>
 <ol style="list-style-type: decimal">
 <li>The outcomes are correlated across observations</li>
-<li>The predictor variables can be associated with different levels of a hierarchy. <em>e.g.</em> we might be interested in:
+<li>The predictor variables can be associated with different levels of a
+hierarchy. <em>e.g.</em> we might be interested in:
 <ul>
 <li>the volume of operations at the hospital,</li>
 <li>whether it is a for-profit or not-for-profit hospital,</li>
-<li>years of experience of the surgeon or where surgeons were trained,</li>
-<li>how the choice of surgery type depends on the age and gender of the patient.</li>
+<li>years of experience of the surgeon or where surgeons were
+trained,</li>
+<li>how the choice of surgery type depends on the age and gender of the
+patient.</li>
 </ul>
 </li>
 </ol>
 </div>
 </div>
-<div id="fecal-fat-example" class="section level1">
-<h1 class="hasAnchor">
-<a href="#fecal-fat-example" class="anchor"></a>Fecal Fat example</h1>
-<div id="a-repeated-measures-example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#a-repeated-measures-example" class="anchor"></a>A Repeated Measures Example</h2>
+<div class="section level2">
+<h2 id="fecal-fat-example">Fecal Fat example<a class="anchor" aria-label="anchor" href="#fecal-fat-example"></a>
+</h2>
+<div class="section level3">
+<h3 id="a-repeated-measures-example">A Repeated Measures Example<a class="anchor" aria-label="anchor" href="#a-repeated-measures-example"></a>
+</h3>
 <ul>
-<li>Lack of digestive enzymes in the intestine can cause bowel absorption problems.
+<li>Lack of digestive enzymes in the intestine can cause bowel
+absorption problems.
 <ul>
 <li>This will be indicated by excess fat in the feces.</li>
 <li>Pancreatic enzyme supplements can alleviate the problem.</li>
-<li>fecfat.csv: a study of fecal fat quantity (g/day) for individuals given each of a placebo and 3 types of pills</li>
+<li>fecfat.csv: a study of fecal fat quantity (g/day) for individuals
+given each of a placebo and 3 types of pills</li>
 </ul>
 </li>
 </ul>
-<div class="figure">
-<img src="VittinghoffTable71.png" alt=""><p class="caption">Fecal Fat dataset</p>
+<div class="float">
+<img src="VittinghoffTable71.png" alt="Fecal Fat dataset"><div class="figcaption">Fecal Fat dataset</div>
 </div>
 </div>
-<div id="option-1-non-hierarchical-analysis-wrong" class="section level2">
-<h2 class="hasAnchor">
-<a href="#option-1-non-hierarchical-analysis-wrong" class="anchor"></a>Option 1: non-hierarchical analysis (wrong)</h2>
+<div class="section level3">
+<h3 id="option-1-non-hierarchical-analysis-wrong">Option 1: non-hierarchical analysis (wrong)<a class="anchor" aria-label="anchor" href="#option-1-non-hierarchical-analysis-wrong"></a>
+</h3>
 <p><img src="session_lecture_files/figure-html/boxplot-1.png" width="700"></p>
 </div>
-<div id="option-1-non-hierarchical-analysis-wrong-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#option-1-non-hierarchical-analysis-wrong-1" class="anchor"></a>Option 1: non-hierarchical analysis (wrong)</h2>
-
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="va">fit1way</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">fecfat</span> <span class="op">~</span> <span class="va">pilltype</span>, data<span class="op">=</span><span class="va">dat</span><span class="op">)</span></pre></div>
-<table class="table">
+<div class="section level3">
+<h3 id="option-1-non-hierarchical-analysis-wrong-1">Option 1: non-hierarchical analysis (wrong)<a class="anchor" aria-label="anchor" href="#option-1-non-hierarchical-analysis-wrong-1"></a>
+</h3>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit1way</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">fecfat</span> <span class="op">~</span> <span class="va">pilltype</span>, data<span class="op">=</span><span class="va">dat</span><span class="op">)</span></span></code></pre></div>
+<table border="1" class="table">
 <caption align="bottom">
 One-way analysis of variance table for fecal fat dataset
 </caption>
@@ -267,27 +286,33 @@ Residuals
 </tr>
 </table>
 <ul>
-<li>Does not account for similarity of measurements within individual</li>
-<li>Would be correct if each treatment were given to a different individual</li>
+<li>Does not account for similarity of measurements within
+individual</li>
+<li>Would be correct if each treatment were given to a different
+individual</li>
 </ul>
 </div>
-<div id="option-2-2-way-aov" class="section level2">
-<h2 class="hasAnchor">
-<a href="#option-2-2-way-aov" class="anchor"></a>Option 2: 2-way AOV</h2>
+<div class="section level3">
+<h3 id="option-2-2-way-aov">Option 2: 2-way AOV<a class="anchor" aria-label="anchor" href="#option-2-2-way-aov"></a>
+</h3>
 <ul>
 <li>Accounts for individual differences in mean fecal fat</li>
 <li>Fits a coefficient for mean fecal fat per individual</li>
 <li>Getting closer</li>
 </ul>
+<pre><code><span><span class="co">## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.</span></span>
+<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Please use `linewidth` instead.</span></span>
+<span><span class="co">## <span style="color: #555555;">This warning is displayed once every 8 hours.</span></span></span>
+<span><span class="co">## <span style="color: #555555;">Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span></span>
+<span><span class="co">## <span style="color: #555555;">generated.</span></span></span></code></pre>
 <p><img src="session_lecture_files/figure-html/ggspaghetti-1.png" width="700"></p>
 </div>
-<div id="option-2-2-way-aov-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#option-2-2-way-aov-1" class="anchor"></a>Option 2: 2-way AOV</h2>
-
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="va">fit1way</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">fecfat</span> <span class="op">~</span> <span class="va">pilltype</span>, data<span class="op">=</span><span class="va">dat</span><span class="op">)</span></pre></div>
-<table class="table">
+<div class="section level3">
+<h3 id="option-2-2-way-aov-1">Option 2: 2-way AOV<a class="anchor" aria-label="anchor" href="#option-2-2-way-aov-1"></a>
+</h3>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit1way</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">fecfat</span> <span class="op">~</span> <span class="va">pilltype</span>, data<span class="op">=</span><span class="va">dat</span><span class="op">)</span></span></code></pre></div>
+<table border="1" class="table">
 <caption align="bottom">
 One-way analysis of variance table for fecal fat dataset
 </caption>
@@ -349,11 +374,12 @@ Residuals
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="va">fit2way</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">fecfat</span> <span class="op">~</span> <span class="va">subject</span> <span class="op">+</span> <span class="va">pilltype</span>, data<span class="op">=</span><span class="va">dat</span><span class="op">)</span></pre></div>
-<table class="table">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">fit2way</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">fecfat</span> <span class="op">~</span> <span class="va">subject</span> <span class="op">+</span> <span class="va">pilltype</span>, data<span class="op">=</span><span class="va">dat</span><span class="op">)</span></span></code></pre></div>
+<table border="1" class="table">
 <caption align="bottom">
-Two-way analysis of variance table. Note the similarity of the pilltype row.
+Two-way analysis of variance table. Note the similarity of the pilltype
+row.
 </caption>
 <tr>
 <th>
@@ -435,12 +461,13 @@ Residuals
 <a name="2"></a>
 </table>
 </div>
-<div id="what-happened" class="section level2">
-<h2 class="hasAnchor">
-<a href="#what-happened" class="anchor"></a>What happened??</h2>
+<div class="section level3">
+<h3 id="what-happened">What happened??<a class="anchor" aria-label="anchor" href="#what-happened"></a>
+</h3>
 <ul>
 <li>1-way ANOVA correctly estimates the effect of pill type</li>
-<li>However, 1-way ANOVA fails to accommodate the correlation within subjects</li>
+<li>However, 1-way ANOVA fails to accommodate the correlation within
+subjects</li>
 <li>1-way ANOVA over-estimates the residual variance
 <ul>
 <li>under-estimates the significance of pill type</li>
@@ -448,34 +475,40 @@ Residuals
 </li>
 </ul>
 </div>
-<div id="regression-models-for-1-and-2-way-anova" class="section level2">
-<h2 class="hasAnchor">
-<a href="#regression-models-for-1-and-2-way-anova" class="anchor"></a>Regression models for 1 and 2-way ANOVA</h2>
+<div class="section level3">
+<h3 id="regression-models-for-1-and-2-way-anova">Regression models for 1 and 2-way ANOVA<a class="anchor" aria-label="anchor" href="#regression-models-for-1-and-2-way-anova"></a>
+</h3>
 <ul>
 <li>Recall for ordinary multiple linear regression: <span class="math display">\[\begin{equation*}
 E[y|x] = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + ... + \beta_p x_p
 \end{equation*}\]</span>
 <ul>
 <li>
-<span class="math inline">\(x_p\)</span> are the predictors or independent variables</li>
+<span class="math inline">\(x_p\)</span> are the predictors or
+independent variables</li>
 <li>
-<span class="math inline">\(y\)</span> is the outcome, response, or dependent variable</li>
+<span class="math inline">\(y\)</span> is the outcome, response, or
+dependent variable</li>
 <li>
-<span class="math inline">\(E[y|x]\)</span> is the expected value of <span class="math inline">\(y\)</span> given <span class="math inline">\(x\)</span>
+<span class="math inline">\(E[y|x]\)</span> is the expected value of
+<span class="math inline">\(y\)</span> given <span class="math inline">\(x\)</span>
 </li>
 <li>
-<span class="math inline">\(\beta_p\)</span> are the regression coefficients</li>
+<span class="math inline">\(\beta_p\)</span> are the regression
+coefficients</li>
 </ul>
 </li>
 </ul>
 </div>
-<div id="regression-models-for-1-and-2-way-anova-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#regression-models-for-1-and-2-way-anova-1" class="anchor"></a>Regression models for 1 and 2-way ANOVA</h2>
+<div class="section level3">
+<h3 id="regression-models-for-1-and-2-way-anova-1">Regression models for 1 and 2-way ANOVA<a class="anchor" aria-label="anchor" href="#regression-models-for-1-and-2-way-anova-1"></a>
+</h3>
 <ul>
-<li><p>One-way ANOVA (person <span class="math inline">\(i\)</span> with pill type <span class="math inline">\(j\)</span>): <span class="math display">\[\begin{equation*}
+<li><p>One-way ANOVA (person <span class="math inline">\(i\)</span> with
+pill type <span class="math inline">\(j\)</span>): <span class="math display">\[\begin{equation*}
 \begin{aligned}
-FECFAT_{ij} &amp;= \textrm{fecal fat measurement for person i with pill type j} \\
+FECFAT_{ij} &amp;= \textrm{fecal fat measurement for person i with pill
+type j} \\
           &amp;= \mu + PILLTYPE_j + \epsilon_{ij}
 \end{aligned}
 \end{equation*}\]</span></p></li>
@@ -484,41 +517,48 @@ FECFAT_{ij} = \mu + SUBJECT_i + PILLTYPE_j + \epsilon_{ij}
 \phantom{\hspace{3cm}}
 \end{equation*}\]</span></p></li>
 </ul>
-<p>Assumption: <span class="math inline">\(\epsilon_{ij} \stackrel{iid}{\sim} N(0, \sigma_\epsilon^2)\)</span></p>
+<p>Assumption: <span class="math inline">\(\epsilon_{ij}
+\stackrel{iid}{\sim} N(0, \sigma_\epsilon^2)\)</span></p>
 </div>
 </div>
-<div id="correlations-within-subjects-icc" class="section level1">
-<h1 class="hasAnchor">
-<a href="#correlations-within-subjects-icc" class="anchor"></a>Correlations within subjects (ICC)</h1>
-<div id="correlations-within-subjects" class="section level2">
-<h2 class="hasAnchor">
-<a href="#correlations-within-subjects" class="anchor"></a>Correlations within subjects</h2>
+<div class="section level2">
+<h2 id="correlations-within-subjects-icc">Correlations within subjects (ICC)<a class="anchor" aria-label="anchor" href="#correlations-within-subjects-icc"></a>
+</h2>
+<div class="section level3">
+<h3 id="correlations-within-subjects">Correlations within subjects<a class="anchor" aria-label="anchor" href="#correlations-within-subjects"></a>
+</h3>
 <ul>
-<li>One-way ANOVA fails because it does not account for the correlation of measurements within-person</li>
-<li>How highly correlated are measurements on the same person? Consider subject <span class="math inline">\(i\)</span>, pill types <span class="math inline">\(j\)</span> and <span class="math inline">\(k\)</span>:</li>
+<li>One-way ANOVA fails because it does not account for the correlation
+of measurements within-person</li>
+<li>How highly correlated are measurements on the same person? Consider
+subject <span class="math inline">\(i\)</span>, pill types <span class="math inline">\(j\)</span> and <span class="math inline">\(k\)</span>:</li>
 </ul>
 <p><span class="math display">\[\begin{equation*}
-corr(FECFAT_{ij}, FECFAT_{ik}) = 
+corr(FECFAT_{ij}, FECFAT_{ik}) =
           \frac{cov(FECFAT_{ij}, FECFAT_{ik})}
                {sd(FECFAT_{ij}) sd(FECFAT_{ik})}
-\end{equation*}\]</span> * This is a measure of how large the subject effect is, in relation to the error term</p>
+\end{equation*}\]</span> * This is a measure of how large the subject
+effect is, in relation to the error term</p>
 </div>
-<div id="correlation-within-subjects" class="section level2">
-<h2 class="hasAnchor">
-<a href="#correlation-within-subjects" class="anchor"></a>Correlation within subjects</h2>
+<div class="section level3">
+<h3 id="correlation-within-subjects">Correlation within subjects<a class="anchor" aria-label="anchor" href="#correlation-within-subjects"></a>
+</h3>
 <p><span class="math display">\[\begin{equation*}
 \begin{aligned}
 cov(FECFAT_{ij}, FECFAT_{ik}) &amp;= cov(SUBJECT_i, SUBJECT_i) \\
                               &amp;= var(SUBJECT_i) \\
-                              &amp;= \sigma_{subject}^2. \textrm{(definition)}
+                              &amp;= \sigma_{subject}^2.
+\textrm{(definition)}
 \end{aligned}
 \end{equation*}\]</span></p>
 <ul>
 <li>Equality 1:
 <ul>
 <li>
-<span class="math inline">\(\mu\)</span> and <span class="math inline">\(pilltype\)</span> terms are assumed to be constant, so do not enter into covariance calculation</li>
-<li>residuals <span class="math inline">\(\epsilon\)</span> are assumed to be independent</li>
+<span class="math inline">\(\mu\)</span> and <span class="math inline">\(pilltype\)</span> terms are assumed to be
+constant, so do not enter into covariance calculation</li>
+<li>residuals <span class="math inline">\(\epsilon\)</span> are assumed
+to be independent</li>
 </ul>
 </li>
 <li>Equality 2:
@@ -527,117 +567,139 @@ cov(FECFAT_{ij}, FECFAT_{ik}) &amp;= cov(SUBJECT_i, SUBJECT_i) \\
 </ul>
 </li>
 </ul>
-<p>Recall <span class="math inline">\(SUBJECT_i\)</span> is the term for individual in 2-way AOV. Now <span class="math inline">\(\beta_i * subjectID\)</span>, will later be treated as a <strong>random variable</strong></p>
+<p>Recall <span class="math inline">\(SUBJECT_i\)</span> is the term for
+individual in 2-way AOV. Now <span class="math inline">\(\beta_i *
+subjectID\)</span>, will later be treated as a <strong>random
+variable</strong></p>
 </div>
-<div id="correlation-within-subjects-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#correlation-within-subjects-1" class="anchor"></a>Correlation within subjects</h2>
-<p>Previous slide calculated <em>covariance</em> for numerator of correlation. Now calculate <em>variance</em> for the denominator (<span class="math inline">\({sd(FECFAT_{ij}) * sd(FECFAT_{ik})} = var(FECFAT_{ij})\)</span>)</p>
+<div class="section level3">
+<h3 id="correlation-within-subjects-1">Correlation within subjects<a class="anchor" aria-label="anchor" href="#correlation-within-subjects-1"></a>
+</h3>
+<p>Previous slide calculated <em>covariance</em> for numerator of
+correlation. Now calculate <em>variance</em> for the denominator (<span class="math inline">\({sd(FECFAT_{ij}) * sd(FECFAT_{ik})} =
+var(FECFAT_{ij})\)</span>)</p>
 <p><span class="math display">\[\begin{equation*}
 \begin{aligned}
-var(FECFAT_{ij}) &amp;= var(SUBJECT_i, SUBJECT_i) + var(\epsilon_{ij}) \\
-                              &amp;= \sigma_{subject}^2 + \sigma_{\epsilon}^2. \textrm{(definition)}
+var(FECFAT_{ij}) &amp;= var(SUBJECT_i, SUBJECT_i) + var(\epsilon_{ij})
+\\
+                              &amp;= \sigma_{subject}^2 +
+\sigma_{\epsilon}^2. \textrm{(definition)}
 \end{aligned}
 \end{equation*}\]</span></p>
 <ul>
 <li>Difference is that the independent residuals do contribute to <span class="math inline">\(var(FECFAT_{ij})\)</span>
 </li>
-<li>Variance is broken into componenets due to <em>subject</em> and <em>residual</em> variance</li>
+<li>Variance is broken into componenets due to <em>subject</em> and
+<em>residual</em> variance</li>
 </ul>
 </div>
-<div id="intraclass-correlation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#intraclass-correlation" class="anchor"></a>Intraclass Correlation</h2>
+<div class="section level3">
+<h3 id="intraclass-correlation">Intraclass Correlation<a class="anchor" aria-label="anchor" href="#intraclass-correlation"></a>
+</h3>
 <p>The correlation between two treatments <span class="math inline">\(j\)</span> and <span class="math inline">\(k\)</span> across subjects <span class="math inline">\(i\)</span> is: <span class="math display">\[\begin{equation*}
 \begin{aligned}
-corr(FECFAT_{ij}, FECFAT_{ik}) &amp; = 
+corr(FECFAT_{ij}, FECFAT_{ik}) &amp; =
           \frac{cov(FECFAT_{ij}, FECFAT_{ik})}
                {sd(FECFAT_{ij}) sd(FECFAT_{ik})} \\
-      &amp; = \frac{\sigma_{subj}^2}{\sigma_{subj}^2 + \sigma_{\epsilon}^2} \\
+      &amp; = \frac{\sigma_{subj}^2}{\sigma_{subj}^2 +
+\sigma_{\epsilon}^2} \\
 ICC &amp; = \frac{\tau_{00}^2}{\tau_{00}^2 + \sigma_\epsilon^2}
 \end{aligned}
 \end{equation*}\]</span></p>
 </div>
-<div id="intuition-behind-correlations-within-subjects" class="section level2">
-<h2 class="hasAnchor">
-<a href="#intuition-behind-correlations-within-subjects" class="anchor"></a>Intuition behind correlations within subjects</h2>
-<div class="figure">
-<img src="VittinghoffTable71.png" alt=""><p class="caption">Fecal Fat dataset</p>
+<div class="section level3">
+<h3 id="intuition-behind-correlations-within-subjects">Intuition behind correlations within subjects<a class="anchor" aria-label="anchor" href="#intuition-behind-correlations-within-subjects"></a>
+</h3>
+<div class="float">
+<img src="VittinghoffTable71.png" alt="Fecal Fat dataset"><div class="figcaption">Fecal Fat dataset</div>
 </div>
-
-<p>Variance of the subject averages (279.4) is increased by correlation of measurements within individual.</p>
+<p>Variance of the subject averages (279.4) is increased by correlation
+of measurements within individual.</p>
 </div>
-<div id="calculation-of-correlations-within-subjects-icc" class="section level2">
-<h2 class="hasAnchor">
-<a href="#calculation-of-correlations-within-subjects-icc" class="anchor"></a>Calculation of correlations within subjects (ICC)</h2>
-<p>What is your estimate of the variability due to subjects, from the 2-way ANOVA? </p>
-<div class="sourceCode" id="cb4"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">fit2way</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">/</span> <span class="fl">15</span> <span class="op">/</span> <span class="fl">4</span> <span class="co">#df=15, divided by 4 pilltypes</span></pre></div>
-<pre><code>## [1] 26.74972</code></pre>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="fl">279.419</span> <span class="op">-</span> <span class="fl">26.75</span> <span class="co">#var(SUBJECT_i)</span></pre></div>
-<pre><code>## [1] 252.669</code></pre>
+<div class="section level3">
+<h3 id="calculation-of-correlations-within-subjects-icc">Calculation of correlations within subjects (ICC)<a class="anchor" aria-label="anchor" href="#calculation-of-correlations-within-subjects-icc"></a>
+</h3>
+<p>What is your estimate of the variability due to subjects, from the
+2-way ANOVA? </p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">fit2way</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">/</span> <span class="fl">15</span> <span class="op">/</span> <span class="fl">4</span> <span class="co">#df=15, divided by 4 pilltypes</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 26.74972</span></span></code></pre>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fl">279.419</span> <span class="op">-</span> <span class="fl">26.75</span> <span class="co">#var(SUBJECT_i)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 252.669</span></span></code></pre>
 <p>Residual variance is:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html">residuals</a></span><span class="op">(</span><span class="va">fit2way</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">/</span> <span class="fl">15</span> <span class="co">#df=15</span></pre></div>
-<pre><code>## [1] 106.9989</code></pre>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">fit2way</span><span class="op">)</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">/</span> <span class="fl">15</span> <span class="co">#df=15</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 106.9989</span></span></code></pre>
 </div>
-<div id="calculation-of-correlations-within-subjects-icc-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#calculation-of-correlations-within-subjects-icc-1" class="anchor"></a>Calculation of correlations within subjects (ICC)</h2>
+<div class="section level3">
+<h3 id="calculation-of-correlations-within-subjects-icc-1">Calculation of correlations within subjects (ICC)<a class="anchor" aria-label="anchor" href="#calculation-of-correlations-within-subjects-icc-1"></a>
+</h3>
 <p>Finally calculate ICC:</p>
 <p><span class="math display">\[\begin{equation*}
 \begin{aligned}
-ICC &amp;= \frac{\sigma_{subj}^2}{\sigma_{subj}^2 + \sigma_{\epsilon}^2} \\
+ICC &amp;= \frac{\sigma_{subj}^2}{\sigma_{subj}^2 + \sigma_{\epsilon}^2}
+\\
     &amp;= \frac{253}{253 + 107}
     &amp;= 0.70
 \end{aligned}
 \end{equation*}\]</span></p>
-<p>This calculation will become easier when we learn to estimate <em>random coefficients</em> in directly in the regression model.</p>
+<p>This calculation will become easier when we learn to estimate
+<em>random coefficients</em> in directly in the regression model.</p>
 </div>
 </div>
-<div id="random-and-fixed-effects" class="section level1">
-<h1 class="hasAnchor">
-<a href="#random-and-fixed-effects" class="anchor"></a>Random and fixed effects</h1>
-<div id="the-next-step-a-mixed-effects-model" class="section level2">
-<h2 class="hasAnchor">
-<a href="#the-next-step-a-mixed-effects-model" class="anchor"></a>The next step: a mixed effects model</h2>
+<div class="section level2">
+<h2 id="random-and-fixed-effects">Random and fixed effects<a class="anchor" aria-label="anchor" href="#random-and-fixed-effects"></a>
+</h2>
+<div class="section level3">
+<h3 id="the-next-step-a-mixed-effects-model">The next step: a mixed effects model<a class="anchor" aria-label="anchor" href="#the-next-step-a-mixed-effects-model"></a>
+</h3>
 <ul>
 <li>
 <p>Two-way ANOVA is a fixed effects model: <span class="math display">\[
-FECFAT_{ij} = \beta_0 + \beta_{subject i} SUBJECT_i + \beta_{pilltype j} PILLTYPE_j + \epsilon_{ij}
+FECFAT_{ij} = \beta_0 + \beta_{subject i} SUBJECT_i + \beta_{pilltype j}
+PILLTYPE_j + \epsilon_{ij}
 \]</span></p>
 <ul>
-<li>Assumption: <span class="math inline">\(\epsilon_i \stackrel{iid}{\sim} N(0, \sigma_\epsilon^2)\)</span>
+<li>Assumption: <span class="math inline">\(\epsilon_i
+\stackrel{iid}{\sim} N(0, \sigma_\epsilon^2)\)</span>
 </li>
 </ul>
 </li>
-<li><p>Instead of fitting a <span class="math inline">\(\beta_{subject i}\)</span> to each individual, assume that subject effects are selected from a distribution of possible subject effects: <span class="math display">\[
-FECFAT_{ij} = \mu + SUBJECT_i + \beta_{pilltype j} PILLTYPE_j + \epsilon_{ij}
-\]</span> where <span class="math inline">\(SUBJECT_i \stackrel{iid}{\sim} N(0, \sigma_{subj}^2)\)</span></p></li>
-<li><p>Here subject is a <em>random</em> effect, and pill type is a <em>fixed</em> effect.</p></li>
+<li><p>Instead of fitting a <span class="math inline">\(\beta_{subject
+i}\)</span> to each individual, assume that subject effects are selected
+from a distribution of possible subject effects: <span class="math display">\[
+FECFAT_{ij} = \mu + SUBJECT_i + \beta_{pilltype j} PILLTYPE_j +
+\epsilon_{ij}
+\]</span> where <span class="math inline">\(SUBJECT_i
+\stackrel{iid}{\sim} N(0, \sigma_{subj}^2)\)</span></p></li>
+<li><p>Here subject is a <em>random</em> effect, and pill type is a
+<em>fixed</em> effect.</p></li>
 <li><p>This is also a random intercept model</p></li>
 </ul>
 </div>
-<div id="random-and-fixed-effects-1" class="section level2">
-<h2 class="hasAnchor">
-<a href="#random-and-fixed-effects-1" class="anchor"></a>Random and fixed effects</h2>
-<div class="figure">
-<img src="VittinghoffTable714.png" alt=""><p class="caption">Random and Fixed Effects</p>
+<div class="section level3">
+<h3 id="random-and-fixed-effects-1">Random and fixed effects<a class="anchor" aria-label="anchor" href="#random-and-fixed-effects-1"></a>
+</h3>
+<div class="float">
+<img src="VittinghoffTable714.png" alt="Random and Fixed Effects"><div class="figcaption">Random and Fixed Effects</div>
 </div>
 </div>
-<div id="summary-correlations-within-subjects" class="section level2">
-<h2 class="hasAnchor">
-<a href="#summary-correlations-within-subjects" class="anchor"></a>Summary: correlations within subjects</h2>
+<div class="section level3">
+<h3 id="summary-correlations-within-subjects">Summary: correlations within subjects<a class="anchor" aria-label="anchor" href="#summary-correlations-within-subjects"></a>
+</h3>
 <ul>
-<li>Subject-to-subject variability simultaneously raises or lowers all the observations on a subject
+<li>Subject-to-subject variability simultaneously raises or lowers all
+the observations on a subject
 <ul>
 <li>induces correlation of within-subject measurements</li>
 </ul>
 </li>
-<li>Variability of individual measurements can be separated into that due to subjects and that left to residual variance.
+<li>Variability of individual measurements can be separated into that
+due to subjects and that left to residual variance.
 <ul>
-<li><span class="math inline">\(var(FECFAT_{ij}) = \sigma_{subj}^2 + \sigma_{\epsilon}^2\)</span></li>
+<li><span class="math inline">\(var(FECFAT_{ij}) = \sigma_{subj}^2 +
+\sigma_{\epsilon}^2\)</span></li>
 </ul>
 </li>
 <li>2-way ANOVA does not directly estimate variability due to subjects
@@ -647,17 +709,20 @@ FECFAT_{ij} = \mu + SUBJECT_i + \beta_{pilltype j} PILLTYPE_j + \epsilon_{ij}
 </li>
 </ul>
 </div>
-<div id="summary-hierarchical-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#summary-hierarchical-data" class="anchor"></a>Summary: hierarchical data</h2>
+<div class="section level3">
+<h3 id="summary-hierarchical-data">Summary: hierarchical data<a class="anchor" aria-label="anchor" href="#summary-hierarchical-data"></a>
+</h3>
 <ul>
-<li>Estimates of coefficients (or “effect sizes”) are unchanged by hierarchical modeling</li>
-<li>Ignoring within-subject correlations results in incorrect estimates of variance, F statistics, p-values
+<li>Estimates of coefficients (or “effect sizes”) are unchanged by
+hierarchical modeling</li>
+<li>Ignoring within-subject correlations results in incorrect estimates
+of variance, F statistics, p-values
 <ul>
 <li>not always “conservative”</li>
 </ul>
 </li>
-<li>Intraclass Correlation (ICC) provides a measure of correlation induced by grouping</li>
+<li>Intraclass Correlation (ICC) provides a measure of correlation
+induced by grouping</li>
 <li>Should be able to recognize fixed and random effects</li>
 </ul>
 </div>
@@ -675,11 +740,13 @@ FECFAT_{ij} = \mu + SUBJECT_i + \beta_{pilltype j} PILLTYPE_j + \epsilon_{ij}
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="https://waldronlab.io">Levi Waldron</a>.</p>
+  <p></p>
+<p>Developed by <a href="https://waldronlab.io" class="external-link">Levi Waldron</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -687,6 +754,8 @@ FECFAT_{ij} = \mu + SUBJECT_i + \beta_{pilltype j} PILLTYPE_j + \epsilon_{ij}
 
   
 
+
+  
 
   </body>
 </html>
