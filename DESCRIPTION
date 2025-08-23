@@ -10,11 +10,11 @@ Imports:
     RColorBrewer,
     lme4,
     nlme,
-    tidyverse
-Suggests:
     xtable,
     gridExtra,
     stargazer,
+    tidyverse
+Suggests:
     pkgdown,
     knitr,
     rmarkdown
